@@ -56,6 +56,7 @@ export const useStyle = () => {
       height: 40,
       borderRadius: 25,
       backgroundColor: '#ededed',
+      display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
     },

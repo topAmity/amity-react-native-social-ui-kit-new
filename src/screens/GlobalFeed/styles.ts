@@ -8,6 +8,7 @@ export const getStyles = () => {
     feedWrap: {
       backgroundColor: theme.colors.screenBackground,
       height: '100%',
+      flex:1
     },
   });
   return styles;

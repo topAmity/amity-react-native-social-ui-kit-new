@@ -1,8 +1,8 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 // import { useTranslation } from 'react-i18next';
 
-import { FlatList, View } from 'react-native';
+import { FlatList, Platform, Text, View } from 'react-native';
 import {
   deletePostById,
   getGlobalFeed,
@@ -33,7 +33,7 @@ export default function GlobalFeed() {
   const flatListRef = useRef(null);
 
   async function getGlobalFeedList(
-    page: Amity.Page<number> = { after: 0, limit: 8 }
+    page: Amity.Page<number> = { after: 0, limit: 5 }
   ): Promise<void> {
     const feedObject = await getGlobalFeed(page);
     if (feedObject) {
@@ -41,6 +41,7 @@ export default function GlobalFeed() {
     }
   }
   const handleLoadMore = () => {
+    console.log('handleLoadMore: ');
     if (nextPage) {
       getGlobalFeedList(nextPage);
     }
@@ -80,6 +81,7 @@ export default function GlobalFeed() {
         <FlatList
           data={postList}
           renderItem={({ item, index }) => (
+
             <PostList
               onDelete={onDeletePost}
               postDetail={item}
@@ -88,11 +90,12 @@ export default function GlobalFeed() {
             />
           )}
           keyExtractor={(item) => item.postId.toString()}
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={0.7}
           onEndReached={handleLoadMore}
           ref={flatListRef}
           ListHeaderComponent={<MyCommunity />}
           extraData={postList}
+          contentContainerStyle={{ flex: 1 }}
         />
       </View>
     </View>

@@ -7,7 +7,7 @@ import {
   PostRepository,
   ReactionRepository,
 } from '@amityco/ts-sdk-react-native';
-import { IMentionPosition } from '../../screens/CreatePost';
+import { type IMentionPosition } from '../../screens/CreatePost';
 
 export interface IGlobalFeedRes {
   data: Amity.Post<any>[];

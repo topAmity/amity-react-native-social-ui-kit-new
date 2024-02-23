@@ -13,15 +13,7 @@ import {
   Animated,
   Alert,
 } from 'react-native';
-import { SvgXml } from 'react-native-svg';
-import {
-  arrowXml,
-  commentXml,
-  likedXml,
-  likeXml,
-  personXml,
-  threeDots,
-} from '../../../svg/svg-xml-list';
+
 import { getStyles } from './styles';
 
 import type { UserInterface } from '../../../types/user.interface';
@@ -43,8 +35,14 @@ import MediaSection from '../../../components/MediaSection';
 import postDetailSlice from '../../../redux/slices/postDetailSlice';
 import { useDispatch } from 'react-redux';
 import globalFeedSlice from '../../../redux/slices/globalfeedSlice';
-import { IMentionPosition } from '../../../screens/CreatePost';
+import { type IMentionPosition } from '../../../screens/CreatePost';
 import feedSlice from '../../../redux/slices/feedSlice';
+import { ThreeDotsIcon } from '../../../svg/ThreeDotsIcon';
+import { LikedIcon } from '../../../svg/LikedIcon';
+import { LikeIcon } from '../../../svg/LikeIcon';
+import CommentIcon from '../../../svg/CommentIcon';
+import PostArrowIcon from '../../../svg/PostArrowIcon';
+import PersonIcon from '../../../svg/PersonIcon';
 
 export interface IPost {
   postId: string;
@@ -378,7 +376,7 @@ export default function PostList({
               styles.modalContent,
               modalStyle,
               user?.userId === (client as Amity.Client).userId &&
-                styles.twoOptions,
+              styles.twoOptions,
             ]}
           >
             {user?.userId === (client as Amity.Client).userId ? (
@@ -491,7 +489,7 @@ export default function PostList({
             />
           ) : (
             <View style={styles.avatar}>
-              <SvgXml xml={personXml} width="20" height="16" />
+             <PersonIcon/>
             </View>
           )}
 
@@ -503,13 +501,9 @@ export default function PostList({
 
               {communityName && (
                 <>
-                  <SvgXml
-                    style={styles.arrow}
-                    xml={arrowXml}
-                    width="8"
-                    height="8"
-                  />
-
+                  <View style={styles.arrow}>
+                    <PostArrowIcon />
+                  </View>
                   <TouchableOpacity onPress={handleCommunityNamePress}>
                     <Text style={styles.headerText}>{communityName}</Text>
                   </TouchableOpacity>
@@ -530,7 +524,7 @@ export default function PostList({
           </View>
         </View>
         <TouchableOpacity onPress={openModal} style={styles.threeDots}>
-          <SvgXml xml={threeDots(theme.colors.base)} width="20" height="16" />
+          <ThreeDotsIcon color={theme.colors.base} />
         </TouchableOpacity>
       </View>
       <View>
@@ -572,13 +566,9 @@ export default function PostList({
             style={styles.likeBtn}
           >
             {isLike ? (
-              <SvgXml
-                xml={likedXml(theme.colors.primary)}
-                width="20"
-                height="16"
-              />
+              <LikedIcon color={theme.colors.primary} />
             ) : (
-              <SvgXml xml={likeXml} width="20" height="16" />
+              <LikeIcon />
             )}
 
             <Text style={isLike ? styles.likedText : styles.btnText}>Like</Text>
@@ -587,7 +577,7 @@ export default function PostList({
             onPress={() => onClickComment()}
             style={styles.commentBtn}
           >
-            <SvgXml xml={commentXml} width="20" height="16" />
+            <CommentIcon />
             <Text style={styles.btnText}>Comment</Text>
           </TouchableOpacity>
         </View>

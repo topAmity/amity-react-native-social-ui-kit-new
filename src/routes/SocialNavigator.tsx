@@ -32,6 +32,7 @@ import { useStyles } from '../routes/style';
 import BackButton from '../components/BackButton';
 import CloseButton from '../components/CloseButton';
 import EditCommunity from '../screens/EditCommunity/EditCommunity';
+import { SearchIcon } from '../svg/SearchIcon';
 
 export default function SocialNavigator() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -64,21 +65,7 @@ export default function SocialNavigator() {
           <Stack.Screen
             name="Home"
             component={Home}
-            options={({ navigation }) => ({
-              headerRight: () => (
-                <TouchableOpacity
-                  onPress={() => onClickSearch(navigation)}
-                  style={styles.btnWrap}
-                >
-                  <SvgXml
-                    xml={searchIcon(theme.colors.base)}
-                    width="25"
-                    height="25"
-                  />
-                </TouchableOpacity>
-              ),
-              headerTitle: 'Community',
-            })}
+
           />
           {/* <Stack.Screen name="Community" component={Home} /> */}
           <Stack.Screen name="Explore" component={Explore} />
@@ -86,7 +73,7 @@ export default function SocialNavigator() {
           <Stack.Screen
             name="CategoryList"
             component={CategoryList}
-            options={({}) => ({
+            options={({ }) => ({
               title: 'Category',
             })}
           />

@@ -23,9 +23,14 @@ import CustomTab from '../../components/CustomTab';
 import { useTheme } from 'react-native-paper';
 import type { MyMD3Theme } from '../../providers/amity-ui-kit-provider';
 import { TabName } from '../../enum/tabNameState';
+import PostIcon from '../../svg/PostIcon';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { SearchIcon } from '../../svg/SearchIcon';
 LogBox.ignoreAllLogs(true);
 export default function Home() {
   // const { t, i18n } = useTranslation();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const styles = getStyles();
   const { client } = useAuth();
   const theme = useTheme() as MyMD3Theme;
@@ -74,16 +79,41 @@ export default function Home() {
       },
     ],
   };
+  const onClickSearch = () => {
+    navigation.navigate('CommunitySearch');
+  };
+
+
+
+  useEffect(() => {
+    navigation.setOptions({
+
+      header: () => (
+        <View style={styles.topBar}>
+          <Text style={styles.titleText}>Community</Text>
+          <View />
+          <TouchableOpacity onPress={onClickSearch} style={styles.btnWrap}>
+            <SearchIcon color={theme.colors.base} />
+          </TouchableOpacity>
+        </View>
+      ),
+      headerTitle: '',
+    });
+
+
+  }, [])
   return (
-   <View>
+    <View style={{ flex: 1 }}>
+
       <CustomTab
         tabName={[TabName.NewsFeed, TabName.Explore]}
         onTabChange={setActiveTab}
       />
       {activeTab === TabName.NewsFeed ? (
-        <View>
+        <View style={{ flex: 1 }}>
           <GlobalFeed />
-          <FloatingButton onPress={openModal} />
+          {/* <FloatingButton onPress={openModal} /> */}
+
         </View>
       ) : (
         <View>

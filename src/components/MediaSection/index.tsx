@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import ImageView from '../../components/react-native-image-viewing/dist';
 import type { RootState } from '../../redux/store';
 import { playBtn } from '../../svg/svg-xml-list';
+import PlayIcon from '../../svg/PlayIcon';
 
 interface IMediaSection {
   childrenPosts: string[];
@@ -231,7 +232,7 @@ export default function MediaSection({ childrenPosts }: IMediaSection) {
   function renderPlayButton() {
     return (
       <View style={styles.playButton}>
-        <SvgXml xml={playBtn} width="50" height="50" />
+       <PlayIcon/>
       </View>
     );
   }
@@ -239,7 +240,7 @@ export default function MediaSection({ childrenPosts }: IMediaSection) {
   return (
     <View>
       {renderMediaPosts()}
-      <ImageView
+      {/* <ImageView
         images={
           imagePostsFullSize.length > 0
             ? imagePostsFullSize
@@ -250,7 +251,7 @@ export default function MediaSection({ childrenPosts }: IMediaSection) {
         onRequestClose={() => setIsVisibleFullImage(false)}
         isVideoButton={videoPosts.length > 0 ? true : false}
         videoPosts={videoPosts}
-      />
+      /> */}
     </View>
   );
 }

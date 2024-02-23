@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import type { MyMD3Theme } from '../../providers/amity-ui-kit-provider';
 
@@ -10,6 +10,10 @@ export const getStyles = () => {
       flex: 1,
       justifyContent: 'flex-end',
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    screenSize: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height
     },
     modalContent: {
       backgroundColor: theme.colors.background,
@@ -58,6 +62,22 @@ export const getStyles = () => {
     },
     btnWrap: {
       padding: 5,
+      marginLeft: 200
+    },
+    topBar: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor:  theme.colors.background,
+      paddingHorizontal: 20,
+      paddingVertical: 20,
+      justifyContent: 'space-between',
+      borderBottomWidth: 0,
+      top: 1
+    },
+    titleText: {
+      fontSize: 20,
+      fontWeight: '700',
+      color: theme.colors.base,
     },
   });
 

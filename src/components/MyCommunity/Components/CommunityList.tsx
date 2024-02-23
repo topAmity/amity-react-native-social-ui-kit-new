@@ -11,6 +11,9 @@ import useImage from '../../../hooks/useImage';
 import type { MyMD3Theme } from '../../../providers/amity-ui-kit-provider';
 import { useTheme } from 'react-native-paper';
 import { PrivacyState } from '../../../enum/privacyState';
+import CommunityIcon from '../../../svg/CommunityIcon';
+import OfficialIcon from '../../../svg/OfficialIcon';
+import PrivateIcon from '../../../svg/PrivateIcon';
 
 interface ICommunityItems {
   communityId: string;
@@ -50,16 +53,14 @@ const CommunityList = ({
       {item.avatarFileId ? (
         <Image source={{ uri: avatarUrl }} style={styles.avatar} />
       ) : (
-        <SvgXml
-          style={styles.avatar}
-          width={40}
-          height={40}
-          xml={communityIcon}
-        />
+
+        <View style={styles.avatar}>
+          <CommunityIcon />
+        </View>
       )}
       <View style={styles.textRow}>
         {!item.isPublic && (
-          <SvgXml width={17} height={17} xml={privateIcon(theme.colors.base)} />
+       <PrivateIcon color={theme.colors.base}/>
         )}
         <Text style={styles.itemText}>
           {getDisplayName({
@@ -68,11 +69,7 @@ const CommunityList = ({
           })}
         </Text>
         {item.isOfficial && (
-          <SvgXml
-            width={20}
-            height={20}
-            xml={officialIcon(theme.colors.primary)}
-          />
+        <OfficialIcon color={theme.colors.primary}/>
         )}
       </View>
     </TouchableOpacity>
