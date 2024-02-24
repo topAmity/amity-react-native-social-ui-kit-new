@@ -1,18 +1,18 @@
 import { Image, Text, TouchableOpacity } from 'react-native';
-import React from 'react';
-import useImage from '../../../hooks/useImage';
+import React, { memo } from 'react';
+import useFile from '../../../hooks/useFile';
 import { SvgXml } from 'react-native-svg';
 import { categoryIcon } from '../../../svg/svg-xml-list';
 import { useStyle } from '../styles';
 
-const RenderCategories = ({
+const Categories = ({
   item,
   onSelectCategory,
 }: {
   item: Amity.Category;
   onSelectCategory: (id: string, name: string) => void;
 }) => {
-  const avatarURL = useImage({ fileId: item.avatarFileId });
+  const avatarURL = useFile({ fileId: item.avatarFileId });
   const styles = useStyle();
   return (
     <TouchableOpacity
@@ -35,4 +35,4 @@ const RenderCategories = ({
   );
 };
 
-export default RenderCategories;
+export default memo(Categories);

@@ -1,16 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { PostRepository } from '@amityco/ts-sdk-react-native';
 import React, { useEffect, useState } from 'react';
 import { FlatList, View, Text } from 'react-native';
-import { getStyles } from './styles';
+import { useStyles } from './styles';
 import CloseButton from '../../components/BackButton';
 import useAuth from '../../hooks/useAuth';
-import { type RootStackParamList } from '../../routes/RouteParamList';
-import { type RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from 'src/routes/RouteParamList';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { amityPostsFormatter } from '../../util/postDataFormatter';
-import { type IPost } from '../../components/Social/PostList';
+import { IPost } from '../../components/Social/PostList';
 import PendingPostList from '../../components/Social/PendingPostList';
-import type { UserInterface } from '../../types/user.interface';
 export default function PendingPosts() {
   const route = useRoute<RouteProp<RootStackParamList, 'PendingPosts'>>();
 
@@ -19,7 +19,7 @@ export default function PendingPosts() {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const { client } = useAuth();
 
-  const styles = getStyles();
+  const styles = useStyles();
 
   React.useLayoutEffect(() => {
     // Set the headerRight component to a TouchableOpacity
@@ -40,7 +40,7 @@ export default function PendingPosts() {
         let pendingPost = await amityPostsFormatter(posts);
         if (!isModerator && client) {
           pendingPost = pendingPost.filter(
-            (item: IPost) => (item.user as UserInterface).userId === (client as Amity.Client).userId
+            (item) => item.user.userId === (client as Amity.Client).userId
           );
         }
         setPostList(pendingPost);
