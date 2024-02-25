@@ -16,7 +16,7 @@ import MyCommunity from '../../components/MyCommunity';
 import { amityPostsFormatter } from '../../util/postDataFormatter';
 import { useDispatch, useSelector } from 'react-redux';
 import globalFeedSlice from '../../redux/slices/globalfeedSlice';
-import { RootState } from '../../redux/store';
+import { type RootState } from '../../redux/store';
 import useConfig from '../../hooks/useConfig';
 
 import { ComponentID } from '../../util/enumUIKitID';

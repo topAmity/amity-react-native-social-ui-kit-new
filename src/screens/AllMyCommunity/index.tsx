@@ -19,7 +19,7 @@ import {
 import debounce from 'lodash.debounce';
 import { useStyles } from './styles';
 import { SvgXml } from 'react-native-svg';
-import { circleCloseIcon, plusIcon, searchIcon } from '../../svg/svg-xml-list';
+import { circleCloseIcon, plusIcon } from '../../svg/svg-xml-list';
 import { CommunityRepository } from '@amityco/ts-sdk-react-native';
 import type { ISearchItem } from '../../components/SearchItem';
 import SearchItem from '../../components/SearchItem';
@@ -27,6 +27,7 @@ import { useTheme } from 'react-native-paper';
 import type { MyMD3Theme } from '../../providers/amity-ui-kit-provider';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { SearchIcon } from '../../svg/SearchIcon';
 
 export default function AllMyCommunity() {
   const theme = useTheme() as MyMD3Theme;
@@ -126,7 +127,7 @@ export default function AllMyCommunity() {
     <View style={styles.container}>
       <View style={styles.headerWrap}>
         <View style={styles.inputWrap}>
-          <SvgXml xml={searchIcon(theme.colors.base)} width="20" height="20" />
+       <SearchIcon color={theme.colors.base }/>
 
           <TextInput
             style={styles.input}

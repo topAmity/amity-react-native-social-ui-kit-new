@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   Image,
-  ImageStyle,
-  StyleProp,
   Text,
   TouchableWithoutFeedback,
   View,
@@ -33,9 +31,9 @@ const MediaSection: React.FC<IMediaSection> = ({ childrenPosts }) => {
   const [imageIndex, setImageIndex] = useState<number>(0);
 
   const styles = useStyles();
-  let imageStyle: StyleProp<ImageStyle> | StyleProp<ImageStyle>[] =
+  let imageStyle: any =
     styles.imageLargePost;
-  let colStyle: StyleProp<ImageStyle> = styles.col2;
+  let colStyle: any = styles.col2;
   const { currentPostdetail } = useSelector(
     (state: RootState) => state.postDetail
   );

@@ -9,7 +9,6 @@ import {
 } from '../../providers/file-provider';
 import { closeIcon, playBtn } from '../../svg/svg-xml-list';
 import { createStyles } from './styles';
-import { createThumbnail, type Thumbnail } from 'react-native-create-thumbnail';
 import * as VideoThumbnails from 'expo-video-thumbnails';
 import Video from 'react-native-video';
 import { useNavigation } from '@react-navigation/native';
@@ -85,7 +84,7 @@ const LoadingVideo = ({
 
   const processThumbNail = async () => {
 
-    const thumbnail = await VideoThumbnails.getThumbnailAsync(url);
+    const thumbNail = await VideoThumbnails.getThumbnailAsync(source);
     setThumbNailImage(thumbNail.uri);
   };
   useEffect(() => {
@@ -156,7 +155,7 @@ const LoadingVideo = ({
           style={[
             styles.image,
             loading ? styles.loadingImage : styles.loadedImage,
-          ]}
+          ] as any}
         />
       ) : (
         <View style={styles.image} />

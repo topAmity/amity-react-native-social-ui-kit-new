@@ -14,7 +14,7 @@ import { SvgXml } from 'react-native-svg';
 import { LoadingOverlay } from '../../components/LoadingOverlay';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from 'src/routes/RouteParamList';
+import { RootStackParamList } from '../../routes/RouteParamList';
 
 export default function UserProfileSetting({
   navigation,

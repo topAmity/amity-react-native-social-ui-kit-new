@@ -1,6 +1,6 @@
 import { getAmityUser } from '../providers/user-provider';
-import { IPost } from '../components/Social/PostList';
-import { UserInterface } from '../types/user.interface';
+import { type IPost } from '../components/Social/PostList';
+import { type UserInterface } from '../types/user.interface';
 
 export const amityPostsFormatter = async (
   posts: Amity.Post<any>[]
